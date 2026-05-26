@@ -2,14 +2,13 @@
 <html>
 <head>
     <title>Calculadora con jQuery</title>
-    <!-- IMPORTAMOS JQUERY -->
+    
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; justify-content: center; padding-top: 50px; background-color: #f0f2f5; }
         .calc-container { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); width: 320px; }
         
-        /* Ocultar flechas de los inputs */
         input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         input[type=number] { -moz-appearance: textfield; }
 
@@ -35,7 +34,6 @@
         <option value="divi">División (÷)</option>
     </select>
 
-    <!-- Eliminamos el atributo 'onclick' del HTML; ahora jQuery maneja el evento -->
     <button id="btnCalcular" class="btn-calcular">Calcular</button>
     <button id="btnLimpiar" class="btn-limpiar">Limpiar pantalla</button>
 
@@ -43,18 +41,14 @@
 </div>
 
 <script>
-    // $(document).ready() asegura que el código corra hasta que el HTML termine de cargar
     $(document).ready(function() {
 
-        // EVENTO CLICK PARA CALCULAR
         $('#btnCalcular').click(function() {
-            // Capturar datos y convertirlos con parseFloat usando .val() de jQuery
             const n1 = parseFloat($('#num1').val());
             const n2 = parseFloat($('#num2').val());
             const op = $('#operacion').val();
-            const $pantalla = $('#resultado'); // Guardamos el elemento en una variable
+            const $pantalla = $('#resultado'); 
 
-            // Validación de campos vacíos
             if (isNaN(n1) || isNaN(n2)) {
                 $pantalla.css('color', 'red').text("Ingresa números válidos");
                 return;
@@ -72,18 +66,15 @@
                 res = n1 / n2;
             }
 
-            // Conservamos tu lógica inteligente de decimales
             const resultadoLimpio = parseFloat(res.toFixed(2));
 
-            // Mostramos el resultado usando .css() y .html() de jQuery
             $pantalla.css('color', '#333').html(`Resultado: <strong>${resultadoLimpio}</strong>`);
         });
 
-        // EVENTO CLICK PARA LIMPIAR
         $('#btnLimpiar').click(function() {
             $('#num1').val("");
             $('#num2').val("");
-            $('#operacion').val("suma"); // Restablece el select a la primera opción
+            $('#operacion').val("suma"); 
             $('#resultado').css('color', '#333').text("Esperando datos...");
         });
 
